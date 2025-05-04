@@ -1,3 +1,5 @@
+package model;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,5 +20,14 @@ public class Product {
 
     public void setComponents(List<Product> components) {
         this.components = components;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public String toString() {
+        return article + " " + name;
     }
 }

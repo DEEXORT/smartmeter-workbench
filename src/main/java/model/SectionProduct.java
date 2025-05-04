@@ -1,3 +1,5 @@
+package model;
+
 public enum SectionProduct {
     CONSUMABLE_MATERIAL("Расходные материалы"), // расходный материал
     PURCHASED_PRODUCT("Комплектующие изделия"), // покупное изделие
