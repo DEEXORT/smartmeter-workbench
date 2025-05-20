@@ -1,6 +1,7 @@
 package view;
 
 import controller.Controller;
+import model.SectionProduct;
 import view.listeners.ButtonsListener;
 import model.Product;
 
@@ -14,7 +15,6 @@ import java.util.Vector;
 public class MainWindow extends JFrame {
     private final Controller controller;
     Vector<Product> vectorProducts = new Vector<>();
-    private final JPanel productsPanel = new JPanel();
     private final JList<Product> productList = new JList<>(); // JFrame список с продукцией
     private Product productSelected; // Выбранная продукция из списка
 
@@ -39,11 +39,13 @@ public class MainWindow extends JFrame {
         getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        JPanel productsPanel = new JPanel();
+        JPanel buttonPanel = new JPanel();
         JButton newProduct = new JButton("Добавить продукт");
-        addButtonToPanel("Добавить продукцию", Operation.ADD_PRODUCT);
+        addButtonToPanel("Добавить продукцию", Operation.ADD_PRODUCT, buttonPanel);
 
         JButton deleteProduct = new JButton("Удалить продукт");
-        addButtonToPanel("Удалить продукцию", Operation.DELETE_PRODUCT);
+        addButtonToPanel("Удалить продукцию", Operation.DELETE_PRODUCT, buttonPanel);
 
         productList.addListSelectionListener(new ListSelectionListener() {
             @Override
@@ -52,20 +54,26 @@ public class MainWindow extends JFrame {
             }
         });
 
+        // Лист с продукцией
         getProducts();
         JScrollPane jScrollPane = new JScrollPane(productList);
         jScrollPane.setPreferredSize(new Dimension(400, 400));
         productsPanel.add(jScrollPane);
+
+        // Добавление компонентов в контейнер
         getContentPane().add(productsPanel);
+        getContentPane().add(buttonPanel);
+
+        initFieldCreateProduct();
 
         setVisible(true);
     }
 
-    private void addButtonToPanel(String btnName, Operation operation) {
+    private void addButtonToPanel(String btnName, Operation operation, JPanel panel) {
         JButton newButton = new JButton(btnName);
         newButton.setActionCommand(operation.getName());
         newButton.addActionListener(new ButtonsListener(controller, this));
-        productsPanel.add(newButton);
+        panel.add(newButton);
     }
 
     public void exit() {
@@ -86,6 +94,22 @@ public class MainWindow extends JFrame {
             System.out.println(product);
         }
         productList.setListData(vectorProducts);
+    }
+
+    // Инициализация формы для добавления продукции
+    private void initFieldCreateProduct() {
+        JPanel formProductPanel = new JPanel();
+        JTextField textFieldArticle = new JTextField(15);
+        JTextField textFieldName = new JTextField(15);
+        JComboBox<String> comboBoxSection = new JComboBox<>();
+        for (SectionProduct section : SectionProduct.values()) {
+            comboBoxSection.addItem(section.getName());
+        }
+        formProductPanel.add(textFieldArticle);
+        formProductPanel.add(textFieldName);
+        formProductPanel.add(comboBoxSection);
+
+        getContentPane().add(formProductPanel);
     }
 
     private void deleteProduct() {

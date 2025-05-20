@@ -7,6 +7,7 @@ public class Model {
     private List<Product> products = new ArrayList<>();
 
     public Model() {
+        // Тестовые изначальные данные
         products.add(new Product(32, 123563, "test", SectionProduct.PRODUCT));
     }
 
