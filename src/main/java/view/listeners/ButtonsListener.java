@@ -1,4 +1,4 @@
-package listeners;
+package view.listeners;
 
 import controller.Controller;
 import model.Product;

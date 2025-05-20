@@ -1,29 +1,26 @@
 package view;
 
 import controller.Controller;
-import listeners.ButtonsListener;
+import view.listeners.ButtonsListener;
 import model.Product;
 
 import javax.swing.*;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import java.awt.*;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Vector;
 
 public class MainWindow extends JFrame {
-    private Controller controller;
+    private final Controller controller;
     Vector<Product> vectorProducts = new Vector<>();
-    private JPanel productsPanel = new JPanel();
-    private List<Product> products = new ArrayList<>();
-    private JList<Product> productList = new JList<>();
+    private final JPanel productsPanel = new JPanel();
+    private final JList<Product> productList = new JList<>(); // JFrame список с продукцией
+    private Product productSelected; // Выбранная продукция из списка
 
     public Product getProductSelected() {
         return productSelected;
     }
-
-    private Product productSelected;
 
     public MainWindow(Controller controller) {
         this.controller = controller;
@@ -40,18 +37,14 @@ public class MainWindow extends JFrame {
         setResizable(true);
         setMinimumSize(new Dimension(800,500));
         getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
-
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         JButton newProduct = new JButton("Добавить продукт");
+        addButtonToPanel("Добавить продукцию", Operation.ADD_PRODUCT);
+
         JButton deleteProduct = new JButton("Удалить продукт");
+        addButtonToPanel("Удалить продукцию", Operation.DELETE_PRODUCT);
 
-        newProduct.setActionCommand(Operation.ADD_PRODUCT.getName());
-        deleteProduct.setActionCommand(Operation.DELETE_PRODUCT.getName());
-
-        // Подписчики
-        newProduct.addActionListener(new ButtonsListener(controller, this));
-        deleteProduct.addActionListener(new ButtonsListener(controller, this));
         productList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
@@ -59,23 +52,24 @@ public class MainWindow extends JFrame {
             }
         });
 
-        productsPanel.add(newProduct);
-        productsPanel.add(deleteProduct);
-
-        showProductList();
-        setVisible(true);
-    }
-
-    public void exit() {
-        this.controller.exit();
-    }
-
-    private void showProductList() {
         getProducts();
         JScrollPane jScrollPane = new JScrollPane(productList);
         jScrollPane.setPreferredSize(new Dimension(400, 400));
         productsPanel.add(jScrollPane);
         getContentPane().add(productsPanel);
+
+        setVisible(true);
+    }
+
+    private void addButtonToPanel(String btnName, Operation operation) {
+        JButton newButton = new JButton(btnName);
+        newButton.setActionCommand(operation.getName());
+        newButton.addActionListener(new ButtonsListener(controller, this));
+        productsPanel.add(newButton);
+    }
+
+    public void exit() {
+        this.controller.exit();
     }
 
     public void updateProductList() {
@@ -85,8 +79,8 @@ public class MainWindow extends JFrame {
     }
 
     private void getProducts() {
-        // Получение списка продукции из модели
-        products = controller.getAllProducts();
+        // Получение списка продукции из БД
+        List<Product> products = controller.getAllProducts();
         for (Product product : products) {
             vectorProducts.add(product);
             System.out.println(product);

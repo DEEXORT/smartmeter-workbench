@@ -1,4 +1,4 @@
-package listeners;
+package view.listeners;
 
 import view.MainWindow;
 import java.awt.event.WindowAdapter;
