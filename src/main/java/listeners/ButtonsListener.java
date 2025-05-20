@@ -1,6 +1,7 @@
 package listeners;
 
 import controller.Controller;
+import model.Product;
 import view.MainWindow;
 import view.Operation;
 
@@ -22,7 +23,10 @@ public class ButtonsListener implements ActionListener {
             this.controller.createProduct();
         }
         if (e.getActionCommand().equals(Operation.DELETE_PRODUCT.getName())) {
-            this.controller.deleteProduct(mainWindow.getProductSelected().getId());
+            Product productSelected = mainWindow.getProductSelected();
+            if (productSelected != null) {
+                this.controller.deleteProduct(productSelected.getId());
+            }
         }
     }
 }
