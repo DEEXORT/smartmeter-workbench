@@ -6,7 +6,7 @@ import javax.swing.table.DefaultTableModel;
 public class StorageWindow extends JComponent {
     private JPanel contentPane;
     private StorageTableModel storageTableModel;
-    private JTable table1;
+    private JTable storageTable;
     private JScrollPane tableScrollPane;
     private JButton addItem;
     private JButton deleteItem;
@@ -14,7 +14,7 @@ public class StorageWindow extends JComponent {
     private JButton searchButton;
     private JTextField searchField;
     private JTextArea AplicabilityTextArea;
-    private JTable table2;
+    private JTable applicabilityItemTable;
 
 
 //    public StorageWindow() {
@@ -25,7 +25,7 @@ public class StorageWindow extends JComponent {
 //        model.addColumn("Единица измерения");
 //        model.addColumn("Описание");
 //        model.addRow(new Object[]{1234567, "Продукт", "шт.", "описание продукта"});
-//        table1.setModel(model);
+//        storageTable.setModel(model);
 //    }
 
     public static void main(String[] args) {
@@ -44,6 +44,10 @@ public class StorageWindow extends JComponent {
         model.addColumn("Единица измерения");
         model.addColumn("Описание");
         model.addRow(new Object[]{1234567, "Продукт", "шт.", "описание продукта"});
-        table1 = new JTable(model);
+        storageTable = new JTable(model);
+
+        ApplicabilityTableModel applicabilityTableModel = new ApplicabilityTableModel();
+        applicabilityTableModel.addData(new String[]{"7772842", "Счетчик электроэнергии 3Ф НЕВА СТ414 139 BCSPIO22-G3E"});
+        applicabilityItemTable = new JTable(applicabilityTableModel);
     }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="view.StorageWindow">
-  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="4" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="contentPane" layout-manager="GridLayoutManager" row-count="5" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="10" left="10" bottom="10" right="10"/>
     <constraints>
       <xy x="20" y="20" width="887" height="519"/>
@@ -10,12 +10,12 @@
     <children>
       <scrollpane id="d01e4" binding="tableScrollPane">
         <constraints>
-          <grid row="0" column="0" row-span="4" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="0" row-span="5" col-span="3" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <component id="16152" class="javax.swing.JTable" binding="table1" custom-create="true" default-binding="true">
+          <component id="16152" class="javax.swing.JTable" binding="storageTable" custom-create="true">
             <constraints/>
             <properties>
               <autoCreateColumnsFromModel value="true"/>
@@ -111,14 +111,28 @@
           </component>
         </children>
       </grid>
-      <component id="eb587" class="javax.swing.JTable" binding="table2" default-binding="true">
+      <scrollpane id="3ef12">
         <constraints>
-          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="6" hsize-policy="6" anchor="0" fill="3" indent="0" use-parent-layout="false">
-            <preferred-size width="150" height="50"/>
-          </grid>
+          <grid row="1" column="3" row-span="1" col-span="1" vsize-policy="7" hsize-policy="7" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
-      </component>
+        <border type="none"/>
+        <children>
+          <component id="eb587" class="javax.swing.JTable" binding="applicabilityItemTable" custom-create="true">
+            <constraints/>
+            <properties>
+              <alignmentX value="0.5"/>
+              <alignmentY value="0.5"/>
+              <autoResizeMode value="2"/>
+              <cellSelectionEnabled value="false"/>
+              <columnSelectionAllowed value="false"/>
+              <dragEnabled value="false"/>
+              <fillsViewportHeight value="true"/>
+              <preferredSize width="100" height="40"/>
+            </properties>
+          </component>
+        </children>
+      </scrollpane>
     </children>
   </grid>
 </form>
