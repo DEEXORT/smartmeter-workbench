@@ -14,7 +14,7 @@ import java.util.Vector;
 
 public class MainWindow extends JFrame {
     private final Controller controller;
-    Vector<Product> vectorProducts = new Vector<>();
+    private final Vector<Product> vectorProducts = new Vector<>();
     private final JList<Product> productList = new JList<>(); // JFrame список с продукцией
     private Product productSelected; // Выбранная продукция из списка
 
@@ -38,6 +38,12 @@ public class MainWindow extends JFrame {
         setMinimumSize(new Dimension(800,500));
         getContentPane().setLayout(new FlowLayout(FlowLayout.LEFT));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        try {
+            UIManager.setLookAndFeel("javax.swing.plaf.nimbus.NimbusLookAndFeel");
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException |
+                 UnsupportedLookAndFeelException e) {
+            throw new RuntimeException(e);
+        }
 
         JPanel productsPanel = new JPanel();
         JPanel buttonPanel = new JPanel();
@@ -86,8 +92,8 @@ public class MainWindow extends JFrame {
         getProducts();
     }
 
+    // Получение списка продукции из БД
     private void getProducts() {
-        // Получение списка продукции из БД
         List<Product> products = controller.getAllProducts();
         for (Product product : products) {
             vectorProducts.add(product);
@@ -99,8 +105,11 @@ public class MainWindow extends JFrame {
     // Инициализация формы для добавления продукции
     private void initFieldCreateProduct() {
         JPanel formProductPanel = new JPanel();
+        // Поле для введения артикула
         JTextField textFieldArticle = new JTextField(15);
+        // Поле для введения имени продукции
         JTextField textFieldName = new JTextField(15);
+        // SelectBox для выбора категории продукции
         JComboBox<String> comboBoxSection = new JComboBox<>();
         for (SectionProduct section : SectionProduct.values()) {
             comboBoxSection.addItem(section.getName());
