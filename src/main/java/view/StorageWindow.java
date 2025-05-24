@@ -29,11 +29,12 @@ public class StorageWindow extends JComponent {
 //    }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame();
-        frame.setContentPane(new StorageWindow().contentPane);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
+
+//        JFrame frame = new JFrame();
+//        frame.setContentPane(new StorageWindow().contentPane);
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.pack();
+//        frame.setVisible(true);
     }
 
     private void createUIComponents() {

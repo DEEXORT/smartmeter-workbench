@@ -2,7 +2,7 @@ package view.listeners;
 
 import controller.Controller;
 import model.Product;
-import view.MainWindow;
+import view.MainWindowOld;
 import view.Operation;
 
 import java.awt.event.ActionEvent;
@@ -10,11 +10,11 @@ import java.awt.event.ActionListener;
 
 public class ButtonsListener implements ActionListener {
     private Controller controller;
-    private MainWindow mainWindow;
+    private MainWindowOld mainWindowOld;
 
-    public ButtonsListener(Controller controller, MainWindow mainWindow) {
+    public ButtonsListener(Controller controller, MainWindowOld mainWindowOld) {
         this.controller = controller;
-        this.mainWindow = mainWindow;
+        this.mainWindowOld = mainWindowOld;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class ButtonsListener implements ActionListener {
             this.controller.createProduct();
         }
         if (e.getActionCommand().equals(Operation.DELETE_PRODUCT.getName())) {
-            Product productSelected = mainWindow.getProductSelected();
+            Product productSelected = mainWindowOld.getProductSelected();
             if (productSelected != null) {
                 this.controller.deleteProduct(productSelected.getId());
             }

@@ -1,19 +1,19 @@
 package view.listeners;
 
-import view.MainWindow;
+import view.MainWindowOld;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
 public class FrameListener extends WindowAdapter {
-    private MainWindow mainWindow;
+    private MainWindowOld mainWindowOld;
 
-    public FrameListener(MainWindow mainWindow) {
-        this.mainWindow = mainWindow;
+    public FrameListener(MainWindowOld mainWindowOld) {
+        this.mainWindowOld = mainWindowOld;
     }
 
 
     @Override
     public void windowClosing(WindowEvent e) {
-        this.mainWindow.exit();
+        this.mainWindowOld.exit();
     }
 }
