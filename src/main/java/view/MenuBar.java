@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.*;
 
-public class NavigationBarWindow extends JPanel {
+public class MenuBar extends JPanel {
     private JButton storageButton;
     private JPanel navigationBarPanel;
     private JButton productsButton;

@@ -1,6 +1,7 @@
 package view;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class MainWindow extends JComponent {
     private JPanel mainPanel;
@@ -18,15 +19,27 @@ public class MainWindow extends JComponent {
         mainWindow.setContentPane(mainPanel);
         mainWindow.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         mainWindow.pack();
+        mainWindow.setLocationRelativeTo(null); // Позиционирование по центру
         mainWindow.setVisible(true);
+        mainWindow.setMinimumSize(mainWindow.getSize());
+
     }
 
     private void createUIComponents() {
         // TODO: place custom component creation code here
+        // Инициализация главной панели GUI
         mainPanel = new JPanel();
+        mainPanel.setLayout(new BorderLayout());
+
+        // Инициализация главного меню приложения
         menuPanel = new JPanel();
-        menuPanel.add(new NavigationBarWindow().getNavigationBarPanel());
+        menuPanel.add(new MenuBar().getNavigationBarPanel());
+
+        // Инициализация контента приложения
         contentPanel = new JPanel();
+        contentPanel.add(new StorageWindow().getContentPane());
+
+        // Инициализация хэдера приложения
         headerPanel = new JPanel();
     }
 }

@@ -4,6 +4,7 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
 public class ApplicabilityTableModel extends AbstractTableModel {
+    // Модель таблицы применяемости комплектующих в продукции
     private final int countColumns = 2;
     private ArrayList<String[]> dataProduct;
 
