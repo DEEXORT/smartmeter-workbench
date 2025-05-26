@@ -2,6 +2,8 @@ package view;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -11,6 +13,7 @@ public class MainWindow extends JComponent {
     private JPanel contentPanel;
     private JPanel headerPanel;
     private final JFrame mainWindow = new JFrame();
+    private StorageWindow storageWindow;
 
     public static void main(String[] args) {
         new MainWindow().init();
@@ -32,8 +35,14 @@ public class MainWindow extends JComponent {
         // Инициализация главной панели GUI
         mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
+
         // Инициализация контента приложения
         contentPanel = new JPanel();
+        storageWindow = new StorageWindow();
+        CardLayout cardLayout = new CardLayout();
+        contentPanel.setLayout(cardLayout);
+        contentPanel.add(storageWindow.getContentPane(), "Storage");
+
         // Инициализация хэдера приложения
         headerPanel = new JPanel();
 
@@ -42,14 +51,8 @@ public class MainWindow extends JComponent {
         menuPanel = new JPanel();
         MenuBar menuBar = new MenuBar();
         // Подписчики меню приложения
-        menuBar.getStorageButton().addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                contentPanel.add(new StorageWindow().getContentPane());
-                mainWindow.pack();
-                mainWindow.setLocationRelativeTo(null);
-            }
-        });
+        menuBar.getStorageButton().addActionListener(e -> cardLayout.show(contentPanel, "Storage"));
         menuPanel.add(menuBar.getNavigationBarPanel());
     }
+
 }
