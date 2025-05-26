@@ -1,6 +1,7 @@
 package view;
 
-import view.content.StorageWindow;
+import view.content.ProductsContent;
+import view.content.StorageContent;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,8 @@ public class MainWindow extends JComponent {
     private JPanel contentPanel;
     private JPanel headerPanel;
     private final JFrame mainWindow = new JFrame();
-    private StorageWindow storageWindow;
+    private StorageContent storageContent;
+    private ProductsContent productsContent;
 
     public static void main(String[] args) {
         new MainWindow().init();
@@ -36,10 +38,12 @@ public class MainWindow extends JComponent {
 
         // Инициализация контента приложения
         contentPanel = new JPanel();
-        storageWindow = new StorageWindow();
+        storageContent = new StorageContent();
+        productsContent = new ProductsContent();
         CardLayout cardLayout = new CardLayout();
         contentPanel.setLayout(cardLayout);
-        contentPanel.add(storageWindow.getContentPane(), "Storage");
+        contentPanel.add(storageContent.getContentPane(), "Storage");
+        contentPanel.add(productsContent.getContentPane(), "Products");
 
         // Инициализация хэдера приложения
         headerPanel = new JPanel();
@@ -49,6 +53,7 @@ public class MainWindow extends JComponent {
         MenuBar menuBar = new MenuBar();
         // Подписчики меню приложения
         menuBar.getStorageButton().addActionListener(e -> cardLayout.show(contentPanel, "Storage"));
+        menuBar.getProductsButton().addActionListener(e -> cardLayout.show(contentPanel, "Products"));
         menuPanel.add(menuBar.getNavigationBarPanel());
     }
 

@@ -6,7 +6,7 @@ import view.StorageTableModel;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
-public class StorageWindow extends JComponent {
+public class StorageContent extends JComponent {
     private JPanel contentPane;
     private StorageTableModel storageTableModel;
     private JTable storageTable;
