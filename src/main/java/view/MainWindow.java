@@ -1,11 +1,9 @@
 package view;
 
+import view.content.StorageWindow;
+
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class MainWindow extends JComponent {
     private JPanel mainPanel;
@@ -45,7 +43,6 @@ public class MainWindow extends JComponent {
 
         // Инициализация хэдера приложения
         headerPanel = new JPanel();
-
 
         // Инициализация главного меню приложения
         menuPanel = new JPanel();

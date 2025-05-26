@@ -1,8 +1,10 @@
-package view;
+package view.content;
+
+import view.ApplicabilityTableModel;
+import view.StorageTableModel;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-import java.awt.*;
 
 public class StorageWindow extends JComponent {
     private JPanel contentPane;
