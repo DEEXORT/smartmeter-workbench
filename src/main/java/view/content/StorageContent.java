@@ -16,8 +16,8 @@ public class StorageContent extends JComponent {
     private JButton editItem;
     private JButton searchButton;
     private JTextField searchField;
-    private JTextArea AplicabilityTextArea;
     private JTable applicabilityItemTable;
+    private JLabel applicabilityLabel;
 
     private void createUIComponents() {
         // TODO: place custom component creation code here

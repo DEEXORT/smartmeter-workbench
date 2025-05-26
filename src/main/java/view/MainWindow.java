@@ -12,8 +12,6 @@ public class MainWindow extends JComponent {
     private JPanel contentPanel;
     private JPanel headerPanel;
     private final JFrame mainWindow = new JFrame();
-    private StorageContent storageContent;
-    private ProductsContent productsContent;
 
     public static void main(String[] args) {
         new MainWindow().init();
@@ -38,8 +36,8 @@ public class MainWindow extends JComponent {
 
         // Инициализация контента приложения
         contentPanel = new JPanel();
-        storageContent = new StorageContent();
-        productsContent = new ProductsContent();
+        StorageContent storageContent = new StorageContent();
+        ProductsContent productsContent = new ProductsContent();
         CardLayout cardLayout = new CardLayout();
         contentPanel.setLayout(cardLayout);
         contentPanel.add(storageContent.getContentPane(), "Storage");
